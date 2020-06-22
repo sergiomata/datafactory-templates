@@ -366,7 +366,26 @@
 							},
 							{
 								"source": {
-									"path": "$['Column_1']"
+									"path": "$['Deposit']"
+								},
+								"sink": {
+									"path": "Deposit"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Gateway']"
+								},
+								"sink": {
+									"path": "Payment_Gateway"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Product']"
+								},
+								"sink": {
+									"path": "Product"
 								}
 							}
 						]
