@@ -1,0 +1,18 @@
+{
+	"name": "DestinationDataset_ywe",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakemoons",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DealPayments.json",
+				"fileSystem": "deal-payments"
+			}
+		}
+	}
+}
