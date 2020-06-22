@@ -40,6 +40,7 @@
 						}
 					},
 					"enableStaging": false,
+					"dataIntegrationUnits": 2,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
@@ -313,6 +314,59 @@
 								},
 								"sink": {
 									"path": "Updated_At"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Type']"
+								},
+								"sink": {
+									"path": "Payment_Type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Transaction_Id']"
+								},
+								"sink": {
+									"path": "Transaction_Id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['External_Reference']"
+								},
+								"sink": {
+									"path": "External_Reference"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Origin']"
+								},
+								"sink": {
+									"path": "Payment_Origin"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Installments']"
+								},
+								"sink": {
+									"path": "Installments"
+								}
+							},
+							{
+								"source": {
+									"path": "$['External_Link']"
+								},
+								"sink": {
+									"path": "External_Link"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Column_1']"
 								}
 							}
 						]
