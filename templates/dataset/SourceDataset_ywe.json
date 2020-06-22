@@ -1,0 +1,14 @@
+{
+	"name": "SourceDataset_ywe",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Moons_Production",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MongoDbV2Collection",
+		"typeProperties": {
+			"collection": "DealPayment"
+		}
+	}
+}
