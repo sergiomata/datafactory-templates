@@ -39,7 +39,284 @@
 							"filePattern": "setOfObjects"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['_id']"
+								},
+								"sink": {
+									"path": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Owner']['id']"
+								},
+								"sink": {
+									"path": "Owner.id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Modified_By']['id']"
+								},
+								"sink": {
+									"path": "Modified_By.id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Created_Time']['$date']"
+								},
+								"sink": {
+									"path": "Created_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Modified_Time']['$date']"
+								},
+								"sink": {
+									"path": "Modified_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Last_Activity_Time']['$date']"
+								},
+								"sink": {
+									"path": "Last_Activity_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Tag']"
+								},
+								"sink": {
+									"path": "Tag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Date']['$date']"
+								},
+								"sink": {
+									"path": "Payment_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Related_Deal']"
+								},
+								"sink": {
+									"path": "Related_Deal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Email']"
+								},
+								"sink": {
+									"path": "Email"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Secondary_Email']"
+								},
+								"sink": {
+									"path": "Secondary_Email"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Created_By']"
+								},
+								"sink": {
+									"path": "Created_By"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Currency']"
+								},
+								"sink": {
+									"path": "Currency"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Exchange_Rate']"
+								},
+								"sink": {
+									"path": "Exchange_Rate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Email_Opt_Out']"
+								},
+								"sink": {
+									"path": "Email_Opt_Out"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Layout']"
+								},
+								"sink": {
+									"path": "Layout"
+								}
+							},
+							{
+								"source": {
+									"path": "$['User_Modified_Time']"
+								},
+								"sink": {
+									"path": "User_Modified_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['System_Modified_Time']"
+								},
+								"sink": {
+									"path": "System_Modified_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['User_Related_Activity_Time']"
+								},
+								"sink": {
+									"path": "User_Related_Activity_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['System_Related_Activity_Time']"
+								},
+								"sink": {
+									"path": "System_Related_Activity_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Record_Approval_Status']"
+								},
+								"sink": {
+									"path": "Record_Approval_Status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Is_Record_Duplicate']"
+								},
+								"sink": {
+									"path": "Is_Record_Duplicate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Total']"
+								},
+								"sink": {
+									"path": "Total"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Method']"
+								},
+								"sink": {
+									"path": "Payment_Method"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Amount']"
+								},
+								"sink": {
+									"path": "Amount"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Status']"
+								},
+								"sink": {
+									"path": "Status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Approved']"
+								},
+								"sink": {
+									"path": "Approved"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Phase']"
+								},
+								"sink": {
+									"path": "Payment_Phase"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Not_Approved']"
+								},
+								"sink": {
+									"path": "Not_Approved"
+								}
+							},
+							{
+								"source": {
+									"path": "$['name']"
+								},
+								"sink": {
+									"path": "Name"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Deal_Payment_Id']"
+								},
+								"sink": {
+									"path": "Deal_Payment_Id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Customer_Id']"
+								},
+								"sink": {
+									"path": "Customer_Id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_created_at']['$date']"
+								},
+								"sink": {
+									"path": "Created_At"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_updated_at']['$date']"
+								},
+								"sink": {
+									"path": "Updated_At"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
