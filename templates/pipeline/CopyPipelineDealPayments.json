@@ -387,6 +387,38 @@
 								"sink": {
 									"path": "Product"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Last_Sent_Time']"
+								},
+								"sink": {
+									"path": "Last_Sent_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Last_Action_Time']"
+								},
+								"sink": {
+									"path": "Last_Action_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Last_Action']"
+								},
+								"sink": {
+									"path": "Last_Action"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Error_Message']"
+								},
+								"sink": {
+									"path": "Error_Message"
+								}
 							}
 						]
 					}
