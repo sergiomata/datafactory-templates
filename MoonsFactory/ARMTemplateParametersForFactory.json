@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "MoonsFactory"
+		},
+		"Moons_Production_connectionString": {
+			"value": ""
+		},
+		"datalakemoons_accountKey": {
+			"value": ""
+		},
+		"Moons_Production_properties_typeProperties_database": {
+			"value": "e3ccd3611122480aa468dd05281abdea"
+		},
+		"datalakemoons_properties_typeProperties_url": {
+			"value": "https://moonsdatalake.dfs.core.windows.net"
+		}
+	}
+}
