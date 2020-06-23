@@ -782,14 +782,6 @@
 							},
 							{
 								"source": {
-									"path": "$['Price_Send']"
-								},
-								"sink": {
-									"path": "Price_Send"
-								}
-							},
-							{
-								"source": {
 									"path": "$['Remove_Content']"
 								},
 								"sink": {
