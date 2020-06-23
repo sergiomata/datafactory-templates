@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_ywe_copy1",
+	"name": "DestinationDatasetPatient",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "datalakemoons",
