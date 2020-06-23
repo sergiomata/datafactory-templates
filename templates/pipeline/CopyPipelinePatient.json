@@ -1523,6 +1523,38 @@
 								"sink": {
 									"path": "Appointment_Status"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Attended_Appointment_Date']['$date']"
+								},
+								"sink": {
+									"path": "Attended_Appointment_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Assigned_Doctor']"
+								},
+								"sink": {
+									"path": "Assigned_Doctor"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Bank_Name']"
+								},
+								"sink": {
+									"path": "Bank_Name"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Business_Name']"
+								},
+								"sink": {
+									"path": "Business_Name"
+								}
 							}
 						],
 						"collectionReference": ""
