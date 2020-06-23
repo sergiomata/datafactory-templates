@@ -1619,6 +1619,102 @@
 								"sink": {
 									"path": "Final_Product_Sent"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Grade_Call']"
+								},
+								"sink": {
+									"path": "Grade_Call"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Graduation_Date']['$date']"
+								},
+								"sink": {
+									"path": "Graduation_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Incidence_Reason_Type']"
+								},
+								"sink": {
+									"path": "Incidence_Reason_Type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Invoice_Address']"
+								},
+								"sink": {
+									"path": "Invoice_Address"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Issues_description']"
+								},
+								"sink": {
+									"path": "Issues_description"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Moons_Advanced_Accepted']"
+								},
+								"sink": {
+									"path": "Moons_Advanced_Accepted"
+								}
+							},
+							{
+								"source": {
+									"path": "$['New_Owner']"
+								},
+								"sink": {
+									"path": "New_Owner"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Not_Scanned_Reason']"
+								},
+								"sink": {
+									"path": "Not_Scanned_Reason"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payment_Source']"
+								},
+								"sink": {
+									"path": "Payment_Source"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Payoff_Agent']"
+								},
+								"sink": {
+									"path": "Payoff_Agent"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Production_Promise_Date']['$date']"
+								},
+								"sink": {
+									"path": "Production_Promise_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Production_Trigger']['$date']"
+								},
+								"sink": {
+									"path": "Production_Trigger"
+								}
 							}
 						],
 						"collectionReference": ""
