@@ -677,7 +677,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Contact_Tags'][0]"
+											"path": "$['Contact_Tags']"
 										},
 										"sink": {
 											"path": "Contact_Tags"
@@ -685,7 +685,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Contacted'][0]"
+											"path": "$['Contacted']"
 										},
 										"sink": {
 											"path": "Contacted"
@@ -709,7 +709,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Incidence_Reason_Type'][0]"
+											"path": "$['Incidence_Reason_Type']"
 										},
 										"sink": {
 											"path": "Incidence_Reason_Type"
@@ -725,7 +725,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Lost_Reason'][0]"
+											"path": "$['Lost_Reason']"
 										},
 										"sink": {
 											"path": "Lost_Reason"
@@ -869,7 +869,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Tag'][0]"
+											"path": "$['Tag']"
 										},
 										"sink": {
 											"path": "Tag"
@@ -885,7 +885,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Deal_Content_History'][0]"
+											"path": "$['Deal_Content_History']"
 										},
 										"sink": {
 											"path": "Deal_Content_History"
@@ -933,7 +933,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Search_Tags'][0]"
+											"path": "$['Search_Tags']"
 										},
 										"sink": {
 											"path": "Search_Tags"
@@ -1377,14 +1377,6 @@
 										},
 										"sink": {
 											"path": "Retainer_Subscription_Status"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Price_Send']"
-										},
-										"sink": {
-											"path": "Price_Send"
 										}
 									},
 									{
@@ -2097,6 +2089,702 @@
 										},
 										"sink": {
 											"path": "Birthdate"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Created_Time']['$date']"
+										},
+										"sink": {
+											"path": "Appointment_Created_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Source']"
+										},
+										"sink": {
+											"path": "Appointment_Source"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Status']"
+										},
+										"sink": {
+											"path": "Appointment_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Attended_Appointment_Date']['$date']"
+										},
+										"sink": {
+											"path": "Attended_Appointment_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Assigned_Doctor']"
+										},
+										"sink": {
+											"path": "Assigned_Doctor"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Bank_Name']"
+										},
+										"sink": {
+											"path": "Bank_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Business_Name']"
+										},
+										"sink": {
+											"path": "Business_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Calendar']"
+										},
+										"sink": {
+											"path": "Calendar"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CLABE']"
+										},
+										"sink": {
+											"path": "CLABE"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Customer_Care_Reason']"
+										},
+										"sink": {
+											"path": "Customer_Care_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Delivery_Promise_Date']['$date']"
+										},
+										"sink": {
+											"path": "Delivery_Promise_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Design_Date']['$date']"
+										},
+										"sink": {
+											"path": "Design_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Designed_By']"
+										},
+										"sink": {
+											"path": "Designed_By"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Diagnostic_Sent_Date']['$date']"
+										},
+										"sink": {
+											"path": "Diagnostic_Sent_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Final_Product_Sent']['$date']"
+										},
+										"sink": {
+											"path": "Final_Product_Sent"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Grade_Call']"
+										},
+										"sink": {
+											"path": "Grade_Call"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Graduation_Date']['$date']"
+										},
+										"sink": {
+											"path": "Graduation_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Incidence_Reason']"
+										},
+										"sink": {
+											"path": "Incidence_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Invoice_Address']"
+										},
+										"sink": {
+											"path": "Invoice_Address"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Issues_description']"
+										},
+										"sink": {
+											"path": "Issues_description"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Moons_Advanced_Accepted']"
+										},
+										"sink": {
+											"path": "Moons_Advanced_Accepted"
+										}
+									},
+									{
+										"source": {
+											"path": "$['New_Owner']"
+										},
+										"sink": {
+											"path": "New_Owner"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Not_Scanned_Reason']"
+										},
+										"sink": {
+											"path": "Not_Scanned_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Source']"
+										},
+										"sink": {
+											"path": "Payment_Source"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payoff_Agent']"
+										},
+										"sink": {
+											"path": "Payoff_Agent"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Production_Promise_Date']['$date']"
+										},
+										"sink": {
+											"path": "Production_Promise_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Production_Trigger']['$date']"
+										},
+										"sink": {
+											"path": "Production_Trigger"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Redund_End_Date']['$date']"
+										},
+										"sink": {
+											"path": "Redund_End_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Refund_Notes']"
+										},
+										"sink": {
+											"path": "Refund_Notes"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Refund_Reason']"
+										},
+										"sink": {
+											"path": "Refund_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Refund_Required']"
+										},
+										"sink": {
+											"path": "Refund_Required"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Refund_Start_Date']['$date']"
+										},
+										"sink": {
+											"path": "Refund_Start_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Retail_Issues']"
+										},
+										"sink": {
+											"path": "Retail_Issues"
+										}
+									},
+									{
+										"source": {
+											"path": "$['RFC']"
+										},
+										"sink": {
+											"path": "RFC"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ShortKey']"
+										},
+										"sink": {
+											"path": "ShortKey"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Treatment_Reason']"
+										},
+										"sink": {
+											"path": "Treatment_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Closing_Date']['$date']"
+										},
+										"sink": {
+											"path": "Closing_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Account_Name']"
+										},
+										"sink": {
+											"path": "Account_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Type']"
+										},
+										"sink": {
+											"path": "Type"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Next_Step']"
+										},
+										"sink": {
+											"path": "Next_Step"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Lead_Source']"
+										},
+										"sink": {
+											"path": "Lead_Source"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Campaign_Source']"
+										},
+										"sink": {
+											"path": "Campaign_Source"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Description']"
+										},
+										"sink": {
+											"path": "Description"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Contact_Name']"
+										},
+										"sink": {
+											"path": "Contact_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Expected_Revenue']"
+										},
+										"sink": {
+											"path": "Expected_Revenue"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Lead_Conversion_Time']['$date']"
+										},
+										"sink": {
+											"path": "Lead_Conversion_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Action']"
+										},
+										"sink": {
+											"path": "Last_Action"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Sent_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Sent_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Action_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Action_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['System_Related_Activity_Time']['$date']"
+										},
+										"sink": {
+											"path": "System_Related_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Pipeline']"
+										},
+										"sink": {
+											"path": "Pipeline"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Place']"
+										},
+										"sink": {
+											"path": "Appointment_Place"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Number_Ext']"
+										},
+										"sink": {
+											"path": "Number_Ext"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Country']"
+										},
+										"sink": {
+											"path": "Country"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Return_Reason']"
+										},
+										"sink": {
+											"path": "Return_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Network']"
+										},
+										"sink": {
+											"path": "Network"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Contact_Times']"
+										},
+										"sink": {
+											"path": "Contact_Times"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Demo_Images']"
+										},
+										"sink": {
+											"path": "Demo_Images"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Phase']"
+										},
+										"sink": {
+											"path": "Payment_Phase"
+										}
+									},
+									{
+										"source": {
+											"path": "$['PaymentLink']"
+										},
+										"sink": {
+											"path": "PaymentLink"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Attended_Date']['$date']"
+										},
+										"sink": {
+											"path": "Appointment_Attended_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['End_Logistics']['$date']"
+										},
+										"sink": {
+											"path": "End_Logistics"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Lead_Date']['$date']"
+										},
+										"sink": {
+											"path": "Lead_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Stage_Lead_Date']['$date']"
+										},
+										"sink": {
+											"path": "Stage_Lead_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Trigger_Back']"
+										},
+										"sink": {
+											"path": "Trigger_Back"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Id']"
+										},
+										"sink": {
+											"path": "Appointment_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Page']"
+										},
+										"sink": {
+											"path": "Appointment_Page"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Cedula_Fiscal']"
+										},
+										"sink": {
+											"path": "Cedula_Fiscal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Compliance']"
+										},
+										"sink": {
+											"path": "Compliance"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Previously_Exported_Date']['$date']"
+										},
+										"sink": {
+											"path": "Previously_Exported_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Page_Origin']"
+										},
+										"sink": {
+											"path": "Page_Origin"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Event_Code']"
+										},
+										"sink": {
+											"path": "Event_Code"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Doctor_Code']"
+										},
+										"sink": {
+											"path": "Doctor_Code"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Stand_By_Reason']"
+										},
+										"sink": {
+											"path": "Stand_By_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Aligners_Range']"
+										},
+										"sink": {
+											"path": "Aligners_Range"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Discount_Price']"
+										},
+										"sink": {
+											"path": "Discount_Price"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Price_Options']"
+										},
+										"sink": {
+											"path": "Price_Options"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Retainer_Subscription_Id']"
+										},
+										"sink": {
+											"path": "Retainer_Subscription_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Subscription_Status']"
+										},
+										"sink": {
+											"path": "Subscription_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['action']"
+										},
+										"sink": {
+											"path": "action"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Videocall_Status']"
+										},
+										"sink": {
+											"path": "Videocall_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Sirena_Group']"
+										},
+										"sink": {
+											"path": "Sirena_Group"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Referral_Id']"
+										},
+										"sink": {
+											"path": "Referral_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Price_Send']"
+										},
+										"sink": {
+											"path": "Price_Send"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Discount_Reason']"
+										},
+										"sink": {
+											"path": "Discount_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Aligner_Change']['$date']"
+										},
+										"sink": {
+											"path": "Last_Aligner_Change"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Installments_Type']"
+										},
+										"sink": {
+											"path": "Installments_Type"
 										}
 									}
 								],
