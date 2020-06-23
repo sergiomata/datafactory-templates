@@ -1555,6 +1555,46 @@
 								"sink": {
 									"path": "Business_Name"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Calendar']"
+								},
+								"sink": {
+									"path": "Calendar"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CLABE']"
+								},
+								"sink": {
+									"path": "CLABE"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Customer_Care_Reason']"
+								},
+								"sink": {
+									"path": "Customer_Care_Reason"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Delivery_Promise_Date']['$date']"
+								},
+								"sink": {
+									"path": "Delivery_Promise_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Design_Date']['$date']"
+								},
+								"sink": {
+									"path": "Design_Date"
+								}
 							}
 						],
 						"collectionReference": ""
