@@ -1499,6 +1499,14 @@
 								"sink": {
 									"path": "Birthdate"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Appointment_Created_Time']['$date']"
+								},
+								"sink": {
+									"path": "Appointment_Created_Time"
+								}
 							}
 						],
 						"collectionReference": ""
