@@ -1638,10 +1638,10 @@
 							},
 							{
 								"source": {
-									"path": "$['Incidence_Reason_Type']"
+									"path": "$['Incidence_Reason']"
 								},
 								"sink": {
-									"path": "Incidence_Reason_Type"
+									"path": "Incidence_Reason"
 								}
 							},
 							{
@@ -2026,6 +2026,174 @@
 								},
 								"sink": {
 									"path": "Appointment_Id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Appointment_Page']"
+								},
+								"sink": {
+									"path": "Appointment_Page"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Cedula_Fiscal']"
+								},
+								"sink": {
+									"path": "Cedula_Fiscal"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Compliance']"
+								},
+								"sink": {
+									"path": "Compliance"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Previously_Exported_Date']['$date']"
+								},
+								"sink": {
+									"path": "Previously_Exported_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Page_Origin']"
+								},
+								"sink": {
+									"path": "Page_Origin"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Event_Code']"
+								},
+								"sink": {
+									"path": "Event_Code"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Doctor_Code']"
+								},
+								"sink": {
+									"path": "Doctor_Code"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Stand_By_Reason']"
+								},
+								"sink": {
+									"path": "Stand_By_Reason"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Aligners_Range']"
+								},
+								"sink": {
+									"path": "Aligners_Range"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Discount_Price']"
+								},
+								"sink": {
+									"path": "Discount_Price"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Price_Options']"
+								},
+								"sink": {
+									"path": "Price_Options"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Retainer_Subscription_Id']"
+								},
+								"sink": {
+									"path": "Retainer_Subscription_Id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Subscription_Status']"
+								},
+								"sink": {
+									"path": "Subscription_Status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['action']"
+								},
+								"sink": {
+									"path": "action"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Videocall_Status']"
+								},
+								"sink": {
+									"path": "Videocall_Status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Sirena_Group']"
+								},
+								"sink": {
+									"path": "Sirena_Group"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Referral_Id']"
+								},
+								"sink": {
+									"path": "Referral_Id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Price_Send']"
+								},
+								"sink": {
+									"path": "Price_Send"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Discount_Reason']"
+								},
+								"sink": {
+									"path": "Discount_Reason"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Last_Aligner_Change']['$date']"
+								},
+								"sink": {
+									"path": "Last_Aligner_Change"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Installments_Type']"
+								},
+								"sink": {
+									"path": "Installments_Type"
 								}
 							}
 						],
