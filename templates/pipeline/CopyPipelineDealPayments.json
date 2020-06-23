@@ -390,7 +390,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Last_Sent_Time']"
+									"path": "$['Last_Sent_Time']['$date']"
 								},
 								"sink": {
 									"path": "Last_Sent_Time"
@@ -398,7 +398,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Last_Action_Time']"
+									"path": "$['Last_Action_Time']['$date']"
 								},
 								"sink": {
 									"path": "Last_Action_Time"
