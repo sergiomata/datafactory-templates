@@ -78,7 +78,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Contact_Tags'][0]"
+									"path": "$['Contact_Tags']"
 								},
 								"sink": {
 									"path": "Contact_Tags"
@@ -86,7 +86,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Contacted'][0]"
+									"path": "$['Contacted']"
 								},
 								"sink": {
 									"path": "Contacted"
@@ -110,7 +110,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Incidence_Reason_Type'][0]"
+									"path": "$['Incidence_Reason_Type']"
 								},
 								"sink": {
 									"path": "Incidence_Reason_Type"
@@ -126,7 +126,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Lost_Reason'][0]"
+									"path": "$['Lost_Reason']"
 								},
 								"sink": {
 									"path": "Lost_Reason"
@@ -270,7 +270,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Tag'][0]"
+									"path": "$['Tag']"
 								},
 								"sink": {
 									"path": "Tag"
@@ -286,7 +286,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Deal_Content_History'][0]"
+									"path": "$['Deal_Content_History']"
 								},
 								"sink": {
 									"path": "Deal_Content_History"
@@ -334,7 +334,7 @@
 							},
 							{
 								"source": {
-									"path": "$['Search_Tags'][0]"
+									"path": "$['Search_Tags']"
 								},
 								"sink": {
 									"path": "Search_Tags"
@@ -1506,6 +1506,22 @@
 								},
 								"sink": {
 									"path": "Appointment_Created_Time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Appointment_Source']"
+								},
+								"sink": {
+									"path": "Appointment_Source"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Appointment_Status']"
+								},
+								"sink": {
+									"path": "Appointment_Status"
 								}
 							}
 						],
