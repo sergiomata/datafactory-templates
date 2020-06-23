@@ -479,6 +479,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDatasetPatient')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "datalakemoons",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Patient.json",
+						"fileSystem": "patient"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_ywe')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -500,6 +524,25 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDatasetPatient')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Moons_Production",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "MongoDbV2Collection",
+				"typeProperties": {
+					"collection": "Patient"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Moons_Production')]"
 			]
 		},
 		{
@@ -581,6 +624,1568 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/CopyPipelineDealPayments')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipelinePatient')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_Patient",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "DealPayment"
+							},
+							{
+								"name": "Destination",
+								"value": "deal-payments//DealPayments.json"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "MongoDbV2Source",
+								"batchSize": 100
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true,
+									"filePattern": "setOfObjects"
+								}
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['_id']"
+										},
+										"sink": {
+											"path": "id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Date']['$date']"
+										},
+										"sink": {
+											"path": "Appointment_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Approved_Date']['$date']"
+										},
+										"sink": {
+											"path": "Approved_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Assigned_To']"
+										},
+										"sink": {
+											"path": "Assigned_To"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Contact_Tags'][0]"
+										},
+										"sink": {
+											"path": "Contact_Tags"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Contacted'][0]"
+										},
+										"sink": {
+											"path": "Contacted"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Owner']"
+										},
+										"sink": {
+											"path": "Deal_Owner"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Diagnosed_Date']['$date']"
+										},
+										"sink": {
+											"path": "$['Diagnosed_Date']['$date']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Incidence_Reason_Type'][0]"
+										},
+										"sink": {
+											"path": "Incidence_Reason_Type"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Initial_Treatment_Date']['$date']"
+										},
+										"sink": {
+											"path": "Initial_Treatment_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Lost_Reason'][0]"
+										},
+										"sink": {
+											"path": "Lost_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['name']"
+										},
+										"sink": {
+											"path": "Modified_By.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['id']"
+										},
+										"sink": {
+											"path": "Modified_By.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['email']"
+										},
+										"sink": {
+											"path": "Modified_By.email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Next_Aligner_Change']['$date']"
+										},
+										"sink": {
+											"path": "Next_Aligner_Change"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Pictures_Uploaded_Date']['$date']"
+										},
+										"sink": {
+											"path": "Pictures_Uploaded_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Planning_Date']['$date']"
+										},
+										"sink": {
+											"path": "Planning_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Planning_Promise_Date']['$date']"
+										},
+										"sink": {
+											"path": "Planning_Promise_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Referral']"
+										},
+										"sink": {
+											"path": "Referral"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Sales_Agent']['id']"
+										},
+										"sink": {
+											"path": "Sales_Agent.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Sales_Agent']['name']"
+										},
+										"sink": {
+											"path": "Sales_Agent.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Sent_Date']['$date']"
+										},
+										"sink": {
+											"path": "Sent_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['name']"
+										},
+										"sink": {
+											"path": "Owner.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['id']"
+										},
+										"sink": {
+											"path": "Owner.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['email']"
+										},
+										"sink": {
+											"path": "Owner.email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_Time']['$date']"
+										},
+										"sink": {
+											"path": "Created_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_Time']['$date']"
+										},
+										"sink": {
+											"path": "Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Activity_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Tag'][0]"
+										},
+										"sink": {
+											"path": "Tag"
+										}
+									},
+									{
+										"source": {
+											"path": "$['End_Planning']['$date']"
+										},
+										"sink": {
+											"path": "End_Planning"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Content_History'][0]"
+										},
+										"sink": {
+											"path": "Deal_Content_History"
+										}
+									},
+									{
+										"source": {
+											"path": "$['App_Stages']['scheduled']"
+										},
+										"sink": {
+											"path": "App_Stages.scheduled"
+										}
+									},
+									{
+										"source": {
+											"path": "$['App_Stages']['appointment']"
+										},
+										"sink": {
+											"path": "App_Stages.appointment"
+										}
+									},
+									{
+										"source": {
+											"path": "$['App_Stages']['paid']"
+										},
+										"sink": {
+											"path": "App_Stages.paid"
+										}
+									},
+									{
+										"source": {
+											"path": "$['App_Stages']['complete']"
+										},
+										"sink": {
+											"path": "App_Stages.complete"
+										}
+									},
+									{
+										"source": {
+											"path": "$['App_Stages']['lost']"
+										},
+										"sink": {
+											"path": "App_Stages.lost"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Search_Tags'][0]"
+										},
+										"sink": {
+											"path": "Search_Tags"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Id']"
+										},
+										"sink": {
+											"path": "Deal_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Ad_Group']"
+										},
+										"sink": {
+											"path": "Ad_Group"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Address_Number']"
+										},
+										"sink": {
+											"path": "Address_Number"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Campaign']"
+										},
+										"sink": {
+											"path": "Campaign"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CFDI_Use']"
+										},
+										"sink": {
+											"path": "CFDI_Use"
+										}
+									},
+									{
+										"source": {
+											"path": "$['City']"
+										},
+										"sink": {
+											"path": "City"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Creative_Name']"
+										},
+										"sink": {
+											"path": "Creative_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Currency']"
+										},
+										"sink": {
+											"path": "Currency"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CustomerId']"
+										},
+										"sink": {
+											"path": "CustomerId"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Name']"
+										},
+										"sink": {
+											"path": "Deal_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Diagnosed_By']"
+										},
+										"sink": {
+											"path": "Diagnosed_By"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Diagnostic_Notes']"
+										},
+										"sink": {
+											"path": "Diagnostic_Notes"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Doubts']"
+										},
+										"sink": {
+											"path": "Doubts"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Email']"
+										},
+										"sink": {
+											"path": "Email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Exchange_Rate']"
+										},
+										"sink": {
+											"path": "Exchange_Rate"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Final_Price']"
+										},
+										"sink": {
+											"path": "Final_Price"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Group_Assigned']"
+										},
+										"sink": {
+											"path": "Group_Assigned"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Lead_Media_Origin']"
+										},
+										"sink": {
+											"path": "Lead_Media_Origin"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Lower_Aligners']"
+										},
+										"sink": {
+											"path": "Lower_Aligners"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Medical_Treatment_Type']"
+										},
+										"sink": {
+											"path": "Medical_Treatment_Type"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Neighborhood']"
+										},
+										"sink": {
+											"path": "Neighborhood"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Orthodontist']"
+										},
+										"sink": {
+											"path": "Orthodontist"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Paid_Amount']"
+										},
+										"sink": {
+											"path": "Paid_Amount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Patient_Name']"
+										},
+										"sink": {
+											"path": "Patient_Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Patient_Tier']"
+										},
+										"sink": {
+											"path": "Patient_Tier"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Method']"
+										},
+										"sink": {
+											"path": "Payment_Method"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Status']"
+										},
+										"sink": {
+											"path": "Payment_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['PaymentId']"
+										},
+										"sink": {
+											"path": "PaymentId"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Phone']"
+										},
+										"sink": {
+											"path": "Phone"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Planning_By']"
+										},
+										"sink": {
+											"path": "Planning_By"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Planning_Link']"
+										},
+										"sink": {
+											"path": "Planning_Link"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Planning_Sent']"
+										},
+										"sink": {
+											"path": "Planning_Sent"
+										}
+									},
+									{
+										"source": {
+											"path": "$['References']"
+										},
+										"sink": {
+											"path": "References"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Referral_Payment']"
+										},
+										"sink": {
+											"path": "Referral_Payment"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Severity']"
+										},
+										"sink": {
+											"path": "Severity"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Shipping_Country']"
+										},
+										"sink": {
+											"path": "Shipping_Country"
+										}
+									},
+									{
+										"source": {
+											"path": "$['SirenaId']"
+										},
+										"sink": {
+											"path": "SirenaId"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Smile_Center']"
+										},
+										"sink": {
+											"path": "Smile_Center"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Smile_Changes']"
+										},
+										"sink": {
+											"path": "Smile_Changes"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Source']"
+										},
+										"sink": {
+											"path": "Source"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Stage']"
+										},
+										"sink": {
+											"path": "Stage"
+										}
+									},
+									{
+										"source": {
+											"path": "$['State']"
+										},
+										"sink": {
+											"path": "State"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Street']"
+										},
+										"sink": {
+											"path": "Street"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Tracking_Delivery']"
+										},
+										"sink": {
+											"path": "Tracking_Delivery"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Treatment_Months']"
+										},
+										"sink": {
+											"path": "Treatment_Months"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Treatment_Step']"
+										},
+										"sink": {
+											"path": "Treatment_Step"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Upper_Aligners']"
+										},
+										"sink": {
+											"path": "Upper_Aligners"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Zip_Code']"
+										},
+										"sink": {
+											"path": "Zip_Code"
+										}
+									},
+									{
+										"source": {
+											"path": "$['PublicKey']"
+										},
+										"sink": {
+											"path": "PublicKey"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Content']"
+										},
+										"sink": {
+											"path": "Deal_Content"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Last_Content']"
+										},
+										"sink": {
+											"path": "Deal_Last_Content"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Videocall_Link']"
+										},
+										"sink": {
+											"path": "Videocall_Link"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Scan_Modality']"
+										},
+										"sink": {
+											"path": "Scan_Modality"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Pixel']"
+										},
+										"sink": {
+											"path": "Pixel"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Retainer_Subscription_Status']"
+										},
+										"sink": {
+											"path": "Retainer_Subscription_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Price_Send']"
+										},
+										"sink": {
+											"path": "Price_Send"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Remove_Content']"
+										},
+										"sink": {
+											"path": "Remove_Content"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_created_at']['$date']"
+										},
+										"sink": {
+											"path": "Created_At"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_updated_at']['$date']"
+										},
+										"sink": {
+											"path": "Updated_At"
+										}
+									},
+									{
+										"source": {
+											"path": "$['End_Production']['$date']"
+										},
+										"sink": {
+											"path": "End_Production"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Begin_Logistics']['$date']"
+										},
+										"sink": {
+											"path": "Begin_Logistics"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Final_Payment_Date']['$date']"
+										},
+										"sink": {
+											"path": "Final_Payment_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['STL_Uploaded_Date']['$date']"
+										},
+										"sink": {
+											"path": "STL_Uploaded_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Begin_Planning']['$date']"
+										},
+										"sink": {
+											"path": "Begin_Planning"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Begin_Production']['$date']"
+										},
+										"sink": {
+											"path": "Begin_Production"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Content_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Content_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Country_Ops']"
+										},
+										"sink": {
+											"path": "Country_Ops"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Patient_Type']"
+										},
+										"sink": {
+											"path": "Patient_Type"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Assigned_to']['id']"
+										},
+										"sink": {
+											"path": "Assigned_to.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Assigned_to']['name']"
+										},
+										"sink": {
+											"path": "Assigned_to.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['STL_Date_Exported']['$date']"
+										},
+										"sink": {
+											"path": "STL_Date_Exported"
+										}
+									},
+									{
+										"source": {
+											"path": "$['User_Modified_Time']['$date']"
+										},
+										"sink": {
+											"path": "User_Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['System_Modified_Time']['$date']"
+										},
+										"sink": {
+											"path": "System_Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Prohibited_Treatment']"
+										},
+										"sink": {
+											"path": "Prohibited_Treatment"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Chronic_Illness']"
+										},
+										"sink": {
+											"path": "Chronic_Illness"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Regular_Medicine']"
+										},
+										"sink": {
+											"path": "Regular_Medicine"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Bleeding_Teeth']"
+										},
+										"sink": {
+											"path": "Bleeding_Teeth"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Mouth_Noise']"
+										},
+										"sink": {
+											"path": "Mouth_Noise"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Terms_Accepted']"
+										},
+										"sink": {
+											"path": "Terms_Accepted"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Loose_Teeth']"
+										},
+										"sink": {
+											"path": "Loose_Teeth"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Address_Confirmed']"
+										},
+										"sink": {
+											"path": "Address_Confirmed"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Send_Whatsapp']"
+										},
+										"sink": {
+											"path": "Send_Whatsapp"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Prepaid_Not_Found']"
+										},
+										"sink": {
+											"path": "Prepaid_Not_Found"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Reassign']"
+										},
+										"sink": {
+											"path": "Reassign"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Need_To_Check']"
+										},
+										"sink": {
+											"path": "Need_To_Check"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Diagnostic_Sent']"
+										},
+										"sink": {
+											"path": "Diagnostic_Sent"
+										}
+									},
+									{
+										"source": {
+											"path": "$['No_Welcome_Message']"
+										},
+										"sink": {
+											"path": "No_Welcome_Message"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Send_Checkout']"
+										},
+										"sink": {
+											"path": "Send_Checkout"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Send_Payment_Link']"
+										},
+										"sink": {
+											"path": "Send_Payment_Link"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CreateLink']"
+										},
+										"sink": {
+											"path": "CreateLink"
+										}
+									},
+									{
+										"source": {
+											"path": "$['No_Call']"
+										},
+										"sink": {
+											"path": "No_Call"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Need_Medical_Treatment']"
+										},
+										"sink": {
+											"path": "Need_Medical_Treatment"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Cambiar_Currency_Col']"
+										},
+										"sink": {
+											"path": "Cambiar_Currency_Col"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Brackets']"
+										},
+										"sink": {
+											"path": "Brackets"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Q2_NPS_Sended']"
+										},
+										"sink": {
+											"path": "Q2_NPS_Sended"
+										}
+									},
+									{
+										"source": {
+											"path": "$['First_NPS_Sended']"
+										},
+										"sink": {
+											"path": "First_NPS_Sended"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Q1_NPS_Sended']"
+										},
+										"sink": {
+											"path": "Q1_NPS_Sended"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Q2_Nps_Answered']"
+										},
+										"sink": {
+											"path": "Q2_Nps_Answered"
+										}
+									},
+									{
+										"source": {
+											"path": "$['First_Nps_Answered']"
+										},
+										"sink": {
+											"path": "First_Nps_Answered"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Q1_Nps_Answered']"
+										},
+										"sink": {
+											"path": "Q1_Nps_Answered"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Previously_Exported']"
+										},
+										"sink": {
+											"path": "Previously_Exported"
+										}
+									},
+									{
+										"source": {
+											"path": "$['First_Need_Medical_Treatment_Contact']"
+										},
+										"sink": {
+											"path": "First_Need_Medical_Treatment_Contact"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Data_Lake']"
+										},
+										"sink": {
+											"path": "Data_Lake"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Amount']"
+										},
+										"sink": {
+											"path": "Amount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Probability']"
+										},
+										"sink": {
+											"path": "Probability"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Sales_Cycle_Duration']"
+										},
+										"sink": {
+											"path": "Sales_Cycle_Duration"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Overall_Sales_Duration']"
+										},
+										"sink": {
+											"path": "Overall_Sales_Duration"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Layout']"
+										},
+										"sink": {
+											"path": "Layout"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Score']"
+										},
+										"sink": {
+											"path": "Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Positive_Score']"
+										},
+										"sink": {
+											"path": "Positive_Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Negative_Score']"
+										},
+										"sink": {
+											"path": "Negative_Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Positive_Touch_Point_Score']"
+										},
+										"sink": {
+											"path": "Positive_Touch_Point_Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Touch_Point_Score']"
+										},
+										"sink": {
+											"path": "Touch_Point_Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Negative_Touch_Point_Score']"
+										},
+										"sink": {
+											"path": "Negative_Touch_Point_Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Prediction_Score']"
+										},
+										"sink": {
+											"path": "Prediction_Score"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Category_Status']"
+										},
+										"sink": {
+											"path": "Deal_Category_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Requiere_return']"
+										},
+										"sink": {
+											"path": "Requiere_Return"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Invoice_Required']"
+										},
+										"sink": {
+											"path": "Invoice_Required"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Planning_Approved']"
+										},
+										"sink": {
+											"path": "Planning_Approved"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Invoiced']"
+										},
+										"sink": {
+											"path": "Invoiced"
+										}
+									},
+									{
+										"source": {
+											"path": "$['STL_Exported']"
+										},
+										"sink": {
+											"path": "STL_Exported"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Pictures_Uploaded']"
+										},
+										"sink": {
+											"path": "Pictures_Uploaded"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Attended_Appointment']"
+										},
+										"sink": {
+											"path": "Attended_Appointment"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Dental_Cleaning']"
+										},
+										"sink": {
+											"path": "Dental_Cleaning"
+										}
+									},
+									{
+										"source": {
+											"path": "$['STL_Uploaded']"
+										},
+										"sink": {
+											"path": "STL_Uploaded"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Dentist_Last_Year']"
+										},
+										"sink": {
+											"path": "Dentist_Last_Year"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Treatment']"
+										},
+										"sink": {
+											"path": "Treatment"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Retainer']"
+										},
+										"sink": {
+											"path": "Retainer"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Difficulty_Open_Mouth']"
+										},
+										"sink": {
+											"path": "Difficulty_Open_Mouth"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Bridges']"
+										},
+										"sink": {
+											"path": "Bridges"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Send_to_Sirena']"
+										},
+										"sink": {
+											"path": "Send_to_Sirena"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Referral_Amount']"
+										},
+										"sink": {
+											"path": "Referral_Amount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Amount']"
+										},
+										"sink": {
+											"path": "Appointment_Amount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Referral_Active']"
+										},
+										"sink": {
+											"path": "Referral_Active"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Move_To_Nurturing']"
+										},
+										"sink": {
+											"path": "Move_To_Nurturing"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Move_To_Lost']"
+										},
+										"sink": {
+											"path": "Move_To_Lost"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Retainer_Subscription']"
+										},
+										"sink": {
+											"path": "Retainer_Subscription"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Send_Welcome_Mail']"
+										},
+										"sink": {
+											"path": "Send_Welcome_Mail"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Send_Subscription_Email']"
+										},
+										"sink": {
+											"path": "Send_Subscription_Email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Location']"
+										},
+										"sink": {
+											"path": "Location"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Origin']"
+										},
+										"sink": {
+											"path": "Deal_Origin"
+										}
+									},
+									{
+										"source": {
+											"path": "$['User_Related_Activity_Time']['$date']"
+										},
+										"sink": {
+											"path": "User_Related_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Customer_Care_Agent']"
+										},
+										"sink": {
+											"path": "Customer_Care_Agent"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Retainer_Date']['$date']"
+										},
+										"sink": {
+											"path": "Retainer_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Birthdate']['$date']"
+										},
+										"sink": {
+											"path": "Birthdate"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDatasetPatient",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDatasetPatient",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDatasetPatient')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDatasetPatient')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger15min')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "CopyPipelinePatient",
+						"type": "PipelineReference"
+					},
+					"parameters": {}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 15,
+					"startTime": "2020-06-23T02:25:00.000Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyPipelinePatient')]"
 			]
 		}
 	]
