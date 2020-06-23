@@ -1595,6 +1595,30 @@
 								"sink": {
 									"path": "Design_Date"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Designed_By']"
+								},
+								"sink": {
+									"path": "Designed_By"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Diagnostic_Sent_Date']['$date']"
+								},
+								"sink": {
+									"path": "Diagnostic_Sent_Date"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Final_Product_Sent']['$date']"
+								},
+								"sink": {
+									"path": "Final_Product_Sent"
+								}
 							}
 						],
 						"collectionReference": ""
