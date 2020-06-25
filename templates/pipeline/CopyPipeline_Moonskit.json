@@ -48,6 +48,7 @@
 						},
 						"path": "moonskit"
 					},
+					"dataIntegrationUnits": 2,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
