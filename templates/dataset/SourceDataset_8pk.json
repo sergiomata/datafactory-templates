@@ -1,0 +1,15 @@
+{
+	"name": "SourceDataset_8pk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Moons_Production",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MongoDbV2Collection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "MoonsKit"
+		}
+	}
+}
