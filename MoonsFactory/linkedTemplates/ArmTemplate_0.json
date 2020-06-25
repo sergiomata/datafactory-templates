@@ -84,6 +84,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_8pk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "datalakemoons",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "MoonsKit.json",
+						"fileSystem": "moonskit"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_ywe')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -120,6 +144,26 @@
 				"type": "MongoDbV2Collection",
 				"typeProperties": {
 					"collection": "Patient"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Moons_Production')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_8pk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Moons_Production",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "MongoDbV2Collection",
+				"schema": [],
+				"typeProperties": {
+					"collection": "MoonsKit"
 				}
 			},
 			"dependsOn": [
@@ -539,7 +583,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Last_Sent_Time']"
+											"path": "$['Last_Sent_Time']['$date']"
 										},
 										"sink": {
 											"path": "Last_Sent_Time"
@@ -547,7 +591,7 @@
 									},
 									{
 										"source": {
-											"path": "$['Last_Action_Time']"
+											"path": "$['Last_Action_Time']['$date']"
 										},
 										"sink": {
 											"path": "Last_Action_Time"
@@ -2812,6 +2856,520 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDatasetPatient')]",
 				"[concat(variables('factoryId'), '/datasets/DestinationDatasetPatient')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipeline_Moonskit')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_8pk",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "MoonsKit"
+							},
+							{
+								"name": "Destination",
+								"value": "moonskit//MoonsKit.json"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "MongoDbV2Source",
+								"batchSize": 100
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true,
+									"filePattern": "setOfObjects"
+								}
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": true,
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "datalakemoons",
+									"type": "LinkedServiceReference"
+								},
+								"path": "moonskit"
+							},
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['_id']"
+										},
+										"sink": {
+											"path": "id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['name']"
+										},
+										"sink": {
+											"path": "Owner.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['id']"
+										},
+										"sink": {
+											"path": "Owner.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['email']"
+										},
+										"sink": {
+											"path": "Owner.email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Activity_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['name']"
+										},
+										"sink": {
+											"path": "Modified_By.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['id']"
+										},
+										"sink": {
+											"path": "Modified_By.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['email']"
+										},
+										"sink": {
+											"path": "Modified_By.email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_Time']['$date']"
+										},
+										"sink": {
+											"path": "Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_Time']['$date']"
+										},
+										"sink": {
+											"path": "Created_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Related_Deal']['name']"
+										},
+										"sink": {
+											"path": "Related_Deal.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Related_Deal']['id']"
+										},
+										"sink": {
+											"path": "Related_Deal.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Production_Trigger_Date']['$date']"
+										},
+										"sink": {
+											"path": "Production_Trigger_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Production_Promise_Date']['$date']"
+										},
+										"sink": {
+											"path": "Production_Promise_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_By']['name']"
+										},
+										"sink": {
+											"path": "Created_By.name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_By']['id']"
+										},
+										"sink": {
+											"path": "Created_By.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_By']['email']"
+										},
+										"sink": {
+											"path": "Created_By.email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Tag']"
+										},
+										"sink": {
+											"path": "Tag"
+										}
+									},
+									{
+										"source": {
+											"path": "$['MoonsKit_Owner']"
+										},
+										"sink": {
+											"path": "MoonsKit_Owner"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Moons_Kit_Id']"
+										},
+										"sink": {
+											"path": "Moons_Kit_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Production_Trigger_Moons_Kit']"
+										},
+										"sink": {
+											"path": "Production_Trigger_Moons_Kit"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Name']"
+										},
+										"sink": {
+											"path": "Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Currency']"
+										},
+										"sink": {
+											"path": "Currency"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Moons_Kit_Stage']"
+										},
+										"sink": {
+											"path": "Moons_Kit_Stage"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CustomerId']"
+										},
+										"sink": {
+											"path": "CustomerId"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_p_Patient']"
+										},
+										"sink": {
+											"path": "Patient"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_created_at']['$date']"
+										},
+										"sink": {
+											"path": "Created_At"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_updated_at']['$date']"
+										},
+										"sink": {
+											"path": "Updated_At"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Sended_To_Customer_Care']"
+										},
+										"sink": {
+											"path": "Sended_To_Customer_Care"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Produced']"
+										},
+										"sink": {
+											"path": "Produced"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Return_Kit_Day']['$date']"
+										},
+										"sink": {
+											"path": "Return_Kit_Day"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Correct_Printing']"
+										},
+										"sink": {
+											"path": "Correct_Printing"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Session_Owner']"
+										},
+										"sink": {
+											"path": "Session_Owner"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Shipping_Day']['$date']"
+										},
+										"sink": {
+											"path": "Shipping_Day"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Reception_Day']['$date']"
+										},
+										"sink": {
+											"path": "Reception_Day"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Session_Correct_Printing']"
+										},
+										"sink": {
+											"path": "Session_Correct_Printing"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Bad_Printing_Reason']"
+										},
+										"sink": {
+											"path": "Bad_Printing_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Bad_Session_Correct_Printing_Reason']"
+										},
+										"sink": {
+											"path": "Bad_Session_Correct_Printing_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Session_Date']['$date']"
+										},
+										"sink": {
+											"path": "Session_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Return_Number']"
+										},
+										"sink": {
+											"path": "Return_Number"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Shipping_Tracking_URL']"
+										},
+										"sink": {
+											"path": "Shipping_Tracking_URL"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Reprinted']"
+										},
+										"sink": {
+											"path": "Reprinted"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Shipping_Number']"
+										},
+										"sink": {
+											"path": "Shipping_Number"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Return_Kit_Tracking_URL']"
+										},
+										"sink": {
+											"path": "Return_Kit_Tracking_URL"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Incidence_Reason']"
+										},
+										"sink": {
+											"path": "Incidence_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Date']['$date']"
+										},
+										"sink": {
+											"path": "$['Appointment_Date']['$date']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Page']"
+										},
+										"sink": {
+											"path": "Appointment_Page"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Status']"
+										},
+										"sink": {
+											"path": "Appointment_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_Id']"
+										},
+										"sink": {
+											"path": "Appointment_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Calendar']"
+										},
+										"sink": {
+											"path": "Calendar"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_8pk",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_8pk",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_8pk')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_8pk')]",
+				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Trigger_8pk')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "CopyPipeline_Moonskit",
+						"type": "PipelineReference"
+					},
+					"parameters": {}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 15,
+					"startTime": "2020-06-25T05:19:00.000Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_Moonskit')]"
 			]
 		},
 		{
