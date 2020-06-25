@@ -1,0 +1,18 @@
+{
+	"name": "DestinationDataset_8pk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakemoons",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MoonsKit.json",
+				"fileSystem": "moonskit"
+			}
+		}
+	}
+}
