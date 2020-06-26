@@ -12,10 +12,6 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": "Patient.json",
 				"fileSystem": "patient"
-			},
-			"compression": {
-				"type": "gzip",
-				"level": "Optimal"
 			}
 		}
 	}
