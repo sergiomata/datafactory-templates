@@ -40,14 +40,7 @@
 						}
 					},
 					"enableStaging": false,
-					"enableSkipIncompatibleRow": true,
-					"logStorageSettings": {
-						"linkedServiceName": {
-							"referenceName": "datalakemoons",
-							"type": "LinkedServiceReference"
-						},
-						"path": "logs"
-					},
+					"enableSkipIncompatibleRow": false,
 					"dataIntegrationUnits": 2,
 					"translator": {
 						"type": "TabularTranslator",
