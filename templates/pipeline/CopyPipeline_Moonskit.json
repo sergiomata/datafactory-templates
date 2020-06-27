@@ -46,7 +46,7 @@
 							"referenceName": "datalakemoons",
 							"type": "LinkedServiceReference"
 						},
-						"path": "moonskit"
+						"path": "logs"
 					},
 					"dataIntegrationUnits": 2,
 					"translator": {
