@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "Destination",
-						"value": "moonskit//MoonsKit.json"
+						"value": "zohov2//MoonsKit.json"
 					}
 				],
 				"typeProperties": {
@@ -31,7 +31,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureDataLakeStoreWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings",
@@ -456,7 +456,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_8pk",
+						"referenceName": "DestinationDataLakeV1Moonskit",
 						"type": "DatasetReference"
 					}
 				]
