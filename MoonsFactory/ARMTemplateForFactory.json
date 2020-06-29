@@ -529,7 +529,8 @@
 							"sink": {
 								"type": "JsonSink",
 								"storeSettings": {
-									"type": "AzureDataLakeStoreWriteSettings"
+									"type": "AzureDataLakeStoreWriteSettings",
+									"maxConcurrentConnections": 1
 								},
 								"formatSettings": {
 									"type": "JsonWriteSettings",
