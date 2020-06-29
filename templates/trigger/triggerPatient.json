@@ -1,0 +1,24 @@
+{
+	"name": "triggerPatient",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyPipelinePatient",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2020-06-29T02:53:00.000Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
