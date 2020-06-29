@@ -11,6 +11,18 @@
 		"datalakemoons_accountKey": {
 			"value": ""
 		},
+		"DataDakeV1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://zohopod.azuredatalakestore.net/webhdfs/v1"
+		},
+		"DataDakeV1_properties_typeProperties_tenant": {
+			"value": "45ad3208-cc54-41c4-9337-568803082bf4"
+		},
+		"DataDakeV1_properties_typeProperties_subscriptionId": {
+			"value": "e6c97e80-faa8-436a-809a-17e26e035aaa"
+		},
+		"DataDakeV1_properties_typeProperties_resourceGroupName": {
+			"value": "MyMoonsResource"
+		},
 		"Moons_Production_properties_typeProperties_database": {
 			"value": "e3ccd3611122480aa468dd05281abdea"
 		},

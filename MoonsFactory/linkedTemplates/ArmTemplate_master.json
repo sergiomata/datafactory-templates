@@ -15,6 +15,22 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'datalakemoons'"
 		},
+		"DataDakeV1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://zohopod.azuredatalakestore.net/webhdfs/v1"
+		},
+		"DataDakeV1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "45ad3208-cc54-41c4-9337-568803082bf4"
+		},
+		"DataDakeV1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "e6c97e80-faa8-436a-809a-17e26e035aaa"
+		},
+		"DataDakeV1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "MyMoonsResource"
+		},
 		"Moons_Production_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "e3ccd3611122480aa468dd05281abdea"
@@ -55,6 +71,18 @@
 					},
 					"datalakemoons_accountKey": {
 						"value": "[parameters('datalakemoons_accountKey')]"
+					},
+					"DataDakeV1_properties_typeProperties_dataLakeStoreUri": {
+						"value": "[parameters('DataDakeV1_properties_typeProperties_dataLakeStoreUri')]"
+					},
+					"DataDakeV1_properties_typeProperties_tenant": {
+						"value": "[parameters('DataDakeV1_properties_typeProperties_tenant')]"
+					},
+					"DataDakeV1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('DataDakeV1_properties_typeProperties_subscriptionId')]"
+					},
+					"DataDakeV1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('DataDakeV1_properties_typeProperties_resourceGroupName')]"
 					},
 					"Moons_Production_properties_typeProperties_database": {
 						"value": "[parameters('Moons_Production_properties_typeProperties_database')]"

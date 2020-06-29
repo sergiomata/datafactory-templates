@@ -6,494 +6,12 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "MoonsFactory"
-		},
-		"Moons_Production_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Moons_Production'"
-		},
-		"datalakemoons_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'datalakemoons'"
-		},
-		"DataDakeV1_properties_typeProperties_dataLakeStoreUri": {
-			"type": "string",
-			"defaultValue": "https://zohopod.azuredatalakestore.net/webhdfs/v1"
-		},
-		"DataDakeV1_properties_typeProperties_tenant": {
-			"type": "string",
-			"defaultValue": "45ad3208-cc54-41c4-9337-568803082bf4"
-		},
-		"DataDakeV1_properties_typeProperties_subscriptionId": {
-			"type": "string",
-			"defaultValue": "e6c97e80-faa8-436a-809a-17e26e035aaa"
-		},
-		"DataDakeV1_properties_typeProperties_resourceGroupName": {
-			"type": "string",
-			"defaultValue": "MyMoonsResource"
-		},
-		"Moons_Production_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "e3ccd3611122480aa468dd05281abdea"
-		},
-		"datalakemoons_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://moonsdatalake.dfs.core.windows.net"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/CopyPipelineDealPayments')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy_ywe",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "DealPayment"
-							},
-							{
-								"name": "Destination",
-								"value": "deal-payments//DealPayments.json"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "MongoDbV2Source",
-								"batchSize": 100
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings",
-									"quoteAllText": true,
-									"filePattern": "setOfObjects"
-								}
-							},
-							"enableStaging": false,
-							"dataIntegrationUnits": 2,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['_id']"
-										},
-										"sink": {
-											"path": "id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Owner']['id']"
-										},
-										"sink": {
-											"path": "Owner.id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Modified_By']['id']"
-										},
-										"sink": {
-											"path": "Modified_By.id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Created_Time']['$date']"
-										},
-										"sink": {
-											"path": "Created_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Modified_Time']['$date']"
-										},
-										"sink": {
-											"path": "Modified_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Last_Activity_Time']['$date']"
-										},
-										"sink": {
-											"path": "Last_Activity_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Tag']"
-										},
-										"sink": {
-											"path": "Tag"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Payment_Date']['$date']"
-										},
-										"sink": {
-											"path": "Payment_Date"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Related_Deal']"
-										},
-										"sink": {
-											"path": "Related_Deal"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Email']"
-										},
-										"sink": {
-											"path": "Email"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Secondary_Email']"
-										},
-										"sink": {
-											"path": "Secondary_Email"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Created_By']"
-										},
-										"sink": {
-											"path": "Created_By"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Currency']"
-										},
-										"sink": {
-											"path": "Currency"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Exchange_Rate']"
-										},
-										"sink": {
-											"path": "Exchange_Rate"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Email_Opt_Out']"
-										},
-										"sink": {
-											"path": "Email_Opt_Out"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Layout']"
-										},
-										"sink": {
-											"path": "Layout"
-										}
-									},
-									{
-										"source": {
-											"path": "$['User_Modified_Time']"
-										},
-										"sink": {
-											"path": "User_Modified_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['System_Modified_Time']"
-										},
-										"sink": {
-											"path": "System_Modified_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['User_Related_Activity_Time']"
-										},
-										"sink": {
-											"path": "User_Related_Activity_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['System_Related_Activity_Time']"
-										},
-										"sink": {
-											"path": "System_Related_Activity_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Record_Approval_Status']"
-										},
-										"sink": {
-											"path": "Record_Approval_Status"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Is_Record_Duplicate']"
-										},
-										"sink": {
-											"path": "Is_Record_Duplicate"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Total']"
-										},
-										"sink": {
-											"path": "Total"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Payment_Method']"
-										},
-										"sink": {
-											"path": "Payment_Method"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Amount']"
-										},
-										"sink": {
-											"path": "Amount"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Status']"
-										},
-										"sink": {
-											"path": "Status"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Approved']"
-										},
-										"sink": {
-											"path": "Approved"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Payment_Phase']"
-										},
-										"sink": {
-											"path": "Payment_Phase"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Not_Approved']"
-										},
-										"sink": {
-											"path": "Not_Approved"
-										}
-									},
-									{
-										"source": {
-											"path": "$['name']"
-										},
-										"sink": {
-											"path": "Name"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Deal_Payment_Id']"
-										},
-										"sink": {
-											"path": "Deal_Payment_Id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Customer_Id']"
-										},
-										"sink": {
-											"path": "Customer_Id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_created_at']['$date']"
-										},
-										"sink": {
-											"path": "Created_At"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_updated_at']['$date']"
-										},
-										"sink": {
-											"path": "Updated_At"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Payment_Type']"
-										},
-										"sink": {
-											"path": "Payment_Type"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Transaction_Id']"
-										},
-										"sink": {
-											"path": "Transaction_Id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['External_Reference']"
-										},
-										"sink": {
-											"path": "External_Reference"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Payment_Origin']"
-										},
-										"sink": {
-											"path": "Payment_Origin"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Installments']"
-										},
-										"sink": {
-											"path": "Installments"
-										}
-									},
-									{
-										"source": {
-											"path": "$['External_Link']"
-										},
-										"sink": {
-											"path": "External_Link"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Deposit']"
-										},
-										"sink": {
-											"path": "Deposit"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Payment_Gateway']"
-										},
-										"sink": {
-											"path": "Payment_Gateway"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Product']"
-										},
-										"sink": {
-											"path": "Product"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Last_Sent_Time']['$date']"
-										},
-										"sink": {
-											"path": "Last_Sent_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Last_Action_Time']['$date']"
-										},
-										"sink": {
-											"path": "Last_Action_Time"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Last_Action']"
-										},
-										"sink": {
-											"path": "Last_Action"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Error_Message']"
-										},
-										"sink": {
-											"path": "Error_Message"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_ywe",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_ywe",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_ywe')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_ywe')]"
-			]
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CopyPipelinePatient')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -2701,15 +2219,13 @@
 						"inputs": [
 							{
 								"referenceName": "SourceDataset_8sv",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "DestinationDataset_8sv",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -2718,8 +2234,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_8sv')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_8sv')]",
-				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_8sv')]"
 			]
 		},
 		{
@@ -3177,15 +2692,13 @@
 						"inputs": [
 							{
 								"referenceName": "SourceDataset_8pk",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "DestinationDataLakeV1Moonskit",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -3193,7 +2706,6 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_8pk')]",
 				"[concat(variables('factoryId'), '/datasets/DestinationDataLakeV1Moonskit')]"
 			]
 		},
@@ -3396,30 +2908,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_8pk')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "datalakemoons",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "MoonsKit.json",
-						"fileSystem": "moonskit"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataset_8sv')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3436,56 +2924,9 @@
 						"fileName": "Patient.json",
 						"fileSystem": "patient"
 					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_ywe')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "datalakemoons",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "DealPayments.json",
-						"fileSystem": "deal-payments"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_8pk')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Moons_Production",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "MongoDbV2Collection",
-				"schema": [],
-				"typeProperties": {
-					"collection": "MoonsKit"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Moons_Production')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_8sv')]",
@@ -3503,28 +2944,7 @@
 					"collection": "Patient"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Moons_Production')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_ywe')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Moons_Production",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "MongoDbV2Collection",
-				"typeProperties": {
-					"collection": "DealPayment"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Moons_Production')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DataDakeV1')]",
@@ -3534,41 +2954,10 @@
 				"annotations": [],
 				"type": "AzureDataLakeStore",
 				"typeProperties": {
-					"dataLakeStoreUri": "[parameters('DataDakeV1_properties_typeProperties_dataLakeStoreUri')]",
-					"tenant": "[parameters('DataDakeV1_properties_typeProperties_tenant')]",
-					"subscriptionId": "[parameters('DataDakeV1_properties_typeProperties_subscriptionId')]",
-					"resourceGroupName": "[parameters('DataDakeV1_properties_typeProperties_resourceGroupName')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Moons_Production')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "MongoDbV2",
-				"typeProperties": {
-					"connectionString": "[parameters('Moons_Production_connectionString')]",
-					"database": "[parameters('Moons_Production_properties_typeProperties_database')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/datalakemoons')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('datalakemoons_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('datalakemoons_accountKey')]"
-					}
+					"dataLakeStoreUri": "https://zohopod.azuredatalakestore.net/webhdfs/v1",
+					"tenant": "45ad3208-cc54-41c4-9337-568803082bf4",
+					"subscriptionId": "e6c97e80-faa8-436a-809a-17e26e035aaa",
+					"resourceGroupName": "MyMoonsResource"
 				}
 			},
 			"dependsOn": []
@@ -3584,8 +2973,7 @@
 					"pipelineReference": {
 						"referenceName": "CopyPipeline_Moonskit",
 						"type": "PipelineReference"
-					},
-					"parameters": {}
+					}
 				},
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
@@ -3627,37 +3015,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_ywe')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipeline": {
-					"pipelineReference": {
-						"referenceName": "CopyPipelineDealPayments",
-						"type": "PipelineReference"
-					},
-					"parameters": {}
-				},
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Minute",
-					"interval": 15,
-					"startTime": "2020-06-22T21:36:00.000Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipelineDealPayments')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/trigger15min')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -3668,8 +3025,7 @@
 					"pipelineReference": {
 						"referenceName": "CopyPipeline_Moonskit",
 						"type": "PipelineReference"
-					},
-					"parameters": {}
+					}
 				},
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
@@ -3700,8 +3056,7 @@
 						"pipelineReference": {
 							"referenceName": "CopyPipelinePatient",
 							"type": "PipelineReference"
-						},
-						"parameters": {}
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
