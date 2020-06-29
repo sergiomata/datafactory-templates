@@ -1,0 +1,13 @@
+{
+	"name": "DataDakeV1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://zohopod.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "45ad3208-cc54-41c4-9337-568803082bf4",
+			"subscriptionId": "e6c97e80-faa8-436a-809a-17e26e035aaa",
+			"resourceGroupName": "MyMoonsResource"
+		}
+	}
+}
