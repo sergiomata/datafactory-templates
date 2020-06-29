@@ -518,7 +518,7 @@
 							},
 							{
 								"name": "Destination",
-								"value": "patient//Patient.json"
+								"value": "zohov2/Patient.json"
 							}
 						],
 						"typeProperties": {
@@ -529,8 +529,7 @@
 							"sink": {
 								"type": "JsonSink",
 								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"blockSizeInMB": 100
+									"type": "AzureDataLakeStoreWriteSettings"
 								},
 								"formatSettings": {
 									"type": "JsonWriteSettings",
@@ -539,14 +538,7 @@
 								}
 							},
 							"enableStaging": false,
-							"enableSkipIncompatibleRow": true,
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "datalakemoons",
-									"type": "LinkedServiceReference"
-								},
-								"path": "logs"
-							},
+							"enableSkipIncompatibleRow": false,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
@@ -2707,7 +2699,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DestinationDataset_8sv",
+								"referenceName": "DestinationDataLakeV1Patient",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2718,7 +2710,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_8sv')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_8sv')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataLakeV1Patient')]",
 				"[concat(variables('factoryId'), '/linkedServices/datalakemoons')]"
 			]
 		},
