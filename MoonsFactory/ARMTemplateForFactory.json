@@ -530,7 +530,8 @@
 								"type": "JsonSink",
 								"storeSettings": {
 									"type": "AzureDataLakeStoreWriteSettings",
-									"maxConcurrentConnections": 1
+									"maxConcurrentConnections": 1,
+									"copyBehavior": "FlattenHierarchy"
 								},
 								"formatSettings": {
 									"type": "JsonWriteSettings",
