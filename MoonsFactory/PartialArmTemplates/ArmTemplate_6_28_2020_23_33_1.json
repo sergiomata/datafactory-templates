@@ -1,0 +1,597 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "MoonsFactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyPipelineDealPayments')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_ywe",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "DealPayment"
+							},
+							{
+								"name": "Destination",
+								"value": "zohov2/DealPayment.json"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "MongoDbV2Source",
+								"batchSize": 100
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureDataLakeStoreWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true,
+									"filePattern": "setOfObjects"
+								}
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 2,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['_id']"
+										},
+										"sink": {
+											"path": "id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Owner']['id']"
+										},
+										"sink": {
+											"path": "Owner.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_By']['id']"
+										},
+										"sink": {
+											"path": "Modified_By.id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_Time']['$date']"
+										},
+										"sink": {
+											"path": "Created_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Modified_Time']['$date']"
+										},
+										"sink": {
+											"path": "Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Activity_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Tag']"
+										},
+										"sink": {
+											"path": "Tag"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Date']['$date']"
+										},
+										"sink": {
+											"path": "Payment_Date"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Related_Deal']"
+										},
+										"sink": {
+											"path": "Related_Deal"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Email']"
+										},
+										"sink": {
+											"path": "Email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Secondary_Email']"
+										},
+										"sink": {
+											"path": "Secondary_Email"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Created_By']"
+										},
+										"sink": {
+											"path": "Created_By"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Currency']"
+										},
+										"sink": {
+											"path": "Currency"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Exchange_Rate']"
+										},
+										"sink": {
+											"path": "Exchange_Rate"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Email_Opt_Out']"
+										},
+										"sink": {
+											"path": "Email_Opt_Out"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Layout']"
+										},
+										"sink": {
+											"path": "Layout"
+										}
+									},
+									{
+										"source": {
+											"path": "$['User_Modified_Time']"
+										},
+										"sink": {
+											"path": "User_Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['System_Modified_Time']"
+										},
+										"sink": {
+											"path": "System_Modified_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['User_Related_Activity_Time']"
+										},
+										"sink": {
+											"path": "User_Related_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['System_Related_Activity_Time']"
+										},
+										"sink": {
+											"path": "System_Related_Activity_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Record_Approval_Status']"
+										},
+										"sink": {
+											"path": "Record_Approval_Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Is_Record_Duplicate']"
+										},
+										"sink": {
+											"path": "Is_Record_Duplicate"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Total']"
+										},
+										"sink": {
+											"path": "Total"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Method']"
+										},
+										"sink": {
+											"path": "Payment_Method"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Amount']"
+										},
+										"sink": {
+											"path": "Amount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Status']"
+										},
+										"sink": {
+											"path": "Status"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Approved']"
+										},
+										"sink": {
+											"path": "Approved"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Phase']"
+										},
+										"sink": {
+											"path": "Payment_Phase"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Not_Approved']"
+										},
+										"sink": {
+											"path": "Not_Approved"
+										}
+									},
+									{
+										"source": {
+											"path": "$['name']"
+										},
+										"sink": {
+											"path": "Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deal_Payment_Id']"
+										},
+										"sink": {
+											"path": "Deal_Payment_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Customer_Id']"
+										},
+										"sink": {
+											"path": "Customer_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_created_at']['$date']"
+										},
+										"sink": {
+											"path": "Created_At"
+										}
+									},
+									{
+										"source": {
+											"path": "$['_updated_at']['$date']"
+										},
+										"sink": {
+											"path": "Updated_At"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Type']"
+										},
+										"sink": {
+											"path": "Payment_Type"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Transaction_Id']"
+										},
+										"sink": {
+											"path": "Transaction_Id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['External_Reference']"
+										},
+										"sink": {
+											"path": "External_Reference"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Origin']"
+										},
+										"sink": {
+											"path": "Payment_Origin"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Installments']"
+										},
+										"sink": {
+											"path": "Installments"
+										}
+									},
+									{
+										"source": {
+											"path": "$['External_Link']"
+										},
+										"sink": {
+											"path": "External_Link"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Deposit']"
+										},
+										"sink": {
+											"path": "Deposit"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Payment_Gateway']"
+										},
+										"sink": {
+											"path": "Payment_Gateway"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Product']"
+										},
+										"sink": {
+											"path": "Product"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Sent_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Sent_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Action_Time']['$date']"
+										},
+										"sink": {
+											"path": "Last_Action_Time"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Last_Action']"
+										},
+										"sink": {
+											"path": "Last_Action"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Error_Message']"
+										},
+										"sink": {
+											"path": "Error_Message"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_ywe",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataLakeV1DealPayment",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DestinationDataLakeV1DealPayment')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataLakeV1DealPayment')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataDakeV1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"fileName": "DealPayment.json",
+						"folderPath": "zohov2"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"_id": {
+							"type": "string"
+						},
+						"Owner_id": {
+							"type": "string"
+						},
+						"Modified_By_id": {
+							"type": "string"
+						},
+						"Created_Time": {
+							"type": "string"
+						},
+						"Modified_Time": {
+							"type": "string"
+						},
+						"Last_Activity_Time": {
+							"type": "string"
+						},
+						"Payment_Date": {
+							"type": "string"
+						},
+						"field1": {
+							"type": "string"
+						},
+						"Email": {
+							"type": "string"
+						},
+						"Secondary_Email": {
+							"type": "string"
+						},
+						"Created_By": {
+							"type": "string"
+						},
+						"Currency": {
+							"type": "string"
+						},
+						"Exchange_Rate": {
+							"type": "integer"
+						},
+						"Email_Opt_Out": {
+							"type": "string"
+						},
+						"Layout": {
+							"type": "string"
+						},
+						"User_Modified_Time": {
+							"type": "string"
+						},
+						"System_Modified_Time": {
+							"type": "string"
+						},
+						"User_Related_Activity_Time": {
+							"type": "string"
+						},
+						"System_Related_Activity_Time": {
+							"type": "string"
+						},
+						"LAST_ACTION": {
+							"type": "string"
+						},
+						"LAST_ACTION_TIME": {
+							"type": "string"
+						},
+						"LAST_SENT_TIME": {
+							"type": "string"
+						},
+						"Record_Approval_Status": {
+							"type": "string"
+						},
+						"Is_Record_Duplicate": {
+							"type": "string"
+						},
+						"Total": {
+							"type": "string"
+						},
+						"Payment_Method": {
+							"type": "string"
+						},
+						"Amount": {
+							"type": "integer"
+						},
+						"Status": {
+							"type": "string"
+						},
+						"Approved": {
+							"type": "boolean"
+						},
+						"Payment_Phase": {
+							"type": "string"
+						},
+						"Not_Approved": {
+							"type": "boolean"
+						},
+						"name": {
+							"type": "string"
+						},
+						"Deal_Payment_Id": {
+							"type": "string"
+						},
+						"Customer_Id": {
+							"type": "string"
+						},
+						"_created_at": {
+							"type": "string"
+						},
+						"_updated_at": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
