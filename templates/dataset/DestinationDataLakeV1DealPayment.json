@@ -1,0 +1,131 @@
+{
+	"name": "DestinationDataLakeV1DealPayment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataDakeV1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "DealPayment.json",
+				"folderPath": "zohov2"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"Owner_id": {
+					"type": "string"
+				},
+				"Modified_By_id": {
+					"type": "string"
+				},
+				"Created_Time": {
+					"type": "string"
+				},
+				"Modified_Time": {
+					"type": "string"
+				},
+				"Last_Activity_Time": {
+					"type": "string"
+				},
+				"Payment_Date": {
+					"type": "string"
+				},
+				"field1": {
+					"type": "string"
+				},
+				"Email": {
+					"type": "string"
+				},
+				"Secondary_Email": {
+					"type": "string"
+				},
+				"Created_By": {
+					"type": "string"
+				},
+				"Currency": {
+					"type": "string"
+				},
+				"Exchange_Rate": {
+					"type": "integer"
+				},
+				"Email_Opt_Out": {
+					"type": "string"
+				},
+				"Layout": {
+					"type": "string"
+				},
+				"User_Modified_Time": {
+					"type": "string"
+				},
+				"System_Modified_Time": {
+					"type": "string"
+				},
+				"User_Related_Activity_Time": {
+					"type": "string"
+				},
+				"System_Related_Activity_Time": {
+					"type": "string"
+				},
+				"LAST_ACTION": {
+					"type": "string"
+				},
+				"LAST_ACTION_TIME": {
+					"type": "string"
+				},
+				"LAST_SENT_TIME": {
+					"type": "string"
+				},
+				"Record_Approval_Status": {
+					"type": "string"
+				},
+				"Is_Record_Duplicate": {
+					"type": "string"
+				},
+				"Total": {
+					"type": "string"
+				},
+				"Payment_Method": {
+					"type": "string"
+				},
+				"Amount": {
+					"type": "integer"
+				},
+				"Status": {
+					"type": "string"
+				},
+				"Approved": {
+					"type": "boolean"
+				},
+				"Payment_Phase": {
+					"type": "string"
+				},
+				"Not_Approved": {
+					"type": "boolean"
+				},
+				"name": {
+					"type": "string"
+				},
+				"Deal_Payment_Id": {
+					"type": "string"
+				},
+				"Customer_Id": {
+					"type": "string"
+				},
+				"_created_at": {
+					"type": "string"
+				},
+				"_updated_at": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
