@@ -1499,6 +1499,7 @@
 							"enableStaging": false,
 							"parallelCopies": 1,
 							"enableSkipIncompatibleRow": false,
+							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
