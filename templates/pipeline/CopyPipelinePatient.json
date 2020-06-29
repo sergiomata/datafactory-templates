@@ -113,7 +113,7 @@
 									"path": "$['Diagnosed_Date']['$date']"
 								},
 								"sink": {
-									"path": "$['Diagnosed_Date']['$date']"
+									"path": "Diagnosed_Date"
 								}
 							},
 							{
