@@ -530,7 +530,6 @@
 								"type": "JsonSink",
 								"storeSettings": {
 									"type": "AzureDataLakeStoreWriteSettings",
-									"maxConcurrentConnections": 1,
 									"copyBehavior": "FlattenHierarchy"
 								},
 								"formatSettings": {
@@ -540,9 +539,7 @@
 								}
 							},
 							"enableStaging": false,
-							"parallelCopies": 1,
 							"enableSkipIncompatibleRow": false,
-							"dataIntegrationUnits": 2,
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
