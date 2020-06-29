@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "Destination",
-						"value": "deal-payments//DealPayments.json"
+						"value": "zohov2/DealPayment.json"
 					}
 				],
 				"typeProperties": {
@@ -31,7 +31,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureDataLakeStoreWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings",
@@ -431,7 +431,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_ywe",
+						"referenceName": "DestinationDataLakeV1DealPayment",
 						"type": "DatasetReference"
 					}
 				]
