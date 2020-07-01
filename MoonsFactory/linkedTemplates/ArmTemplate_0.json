@@ -1488,7 +1488,7 @@
 								"type": "JsonSink",
 								"storeSettings": {
 									"type": "AzureDataLakeStoreWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
+									"copyBehavior": "MergeFiles"
 								},
 								"formatSettings": {
 									"type": "JsonWriteSettings",
