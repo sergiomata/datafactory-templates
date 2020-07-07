@@ -485,6 +485,9 @@
 						"referenceName": "dataflowMoonsKit",
 						"type": "DataFlowReference"
 					},
+					"staging": {
+						"folderPath": ""
+					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
