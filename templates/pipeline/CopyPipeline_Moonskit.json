@@ -482,7 +482,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "dataflow1",
+						"referenceName": "dataflowMoonsKit",
 						"type": "DataFlowReference"
 					},
 					"compute": {
