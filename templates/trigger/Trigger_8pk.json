@@ -2,7 +2,7 @@
 	"name": "Trigger_8pk",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipeline": {
 			"pipelineReference": {
 				"referenceName": "CopyPipeline_Moonskit",
