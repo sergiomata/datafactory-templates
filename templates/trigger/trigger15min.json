@@ -2,7 +2,7 @@
 	"name": "trigger15min",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipeline": {
 			"pipelineReference": {
 				"referenceName": "CopyPipeline_Moonskit",
