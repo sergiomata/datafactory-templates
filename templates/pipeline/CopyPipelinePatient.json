@@ -2188,22 +2188,6 @@
 								"sink": {
 									"path": "Installments_Type"
 								}
-							},
-							{
-								"source": {
-									"path": "$['Not_Scanned_Reason']"
-								},
-								"sink": {
-									"path": "Not_Scanned_Reason"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Smile_Advisers']"
-								},
-								"sink": {
-									"path": "Smile_Advisers"
-								}
 							}
 						],
 						"collectionReference": ""
