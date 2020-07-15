@@ -2188,6 +2188,14 @@
 								"sink": {
 									"path": "Installments_Type"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Smile_Advisers']"
+								},
+								"sink": {
+									"path": "Smile_Advisers"
+								}
 							}
 						],
 						"collectionReference": ""
