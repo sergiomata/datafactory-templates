@@ -13,7 +13,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/triggerDealPayment')]",
+			"name": "[concat(parameters('factoryName'), '/triggerPatient')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -22,7 +22,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "CopyPipelineDealPayments",
+							"referenceName": "CopyPipelinePatient",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -31,9 +31,9 @@
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Minute",
-						"interval": 15,
-						"startTime": "2020-07-10T22:25:00.000Z",
+						"frequency": "Hour",
+						"interval": 1,
+						"startTime": "2020-06-29T01:40:00.000Z",
 						"timeZone": "UTC"
 					}
 				}

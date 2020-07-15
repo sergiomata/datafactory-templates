@@ -3644,6 +3644,14 @@
 										"sink": {
 											"path": "Installments_Type"
 										}
+									},
+									{
+										"source": {
+											"path": "$['Smile_Advisers']"
+										},
+										"sink": {
+											"path": "Smile_Advisers"
+										}
 									}
 								],
 								"collectionReference": ""
@@ -4241,7 +4249,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/triggerPatient')]",
+			"name": "[concat(parameters('factoryName'), '/triggerDealPayment')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -4250,7 +4258,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "CopyPipelinePatient",
+							"referenceName": "CopyPipelineDealPayments",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -4259,15 +4267,15 @@
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2020-06-29T01:40:00.000Z",
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2020-07-10T22:25:00.000Z",
 						"timeZone": "UTC"
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipelinePatient')]"
+				"[concat(variables('factoryId'), '/pipelines/CopyPipelineDealPayments')]"
 			]
 		}
 	]

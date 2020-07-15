@@ -2686,6 +2686,14 @@
 										"sink": {
 											"path": "Installments_Type"
 										}
+									},
+									{
+										"source": {
+											"path": "$['Smile_Advisers']"
+										},
+										"sink": {
+											"path": "Smile_Advisers"
+										}
 									}
 								],
 								"collectionReference": ""
@@ -4241,36 +4249,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/triggerPatient')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyPipelinePatient",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2020-06-29T01:40:00.000Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CopyPipelinePatient')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/triggerDealPayment')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -4298,6 +4276,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/CopyPipelineDealPayments')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggerPatient')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CopyPipelinePatient",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 1,
+						"startTime": "2020-06-29T01:40:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyPipelinePatient')]"
 			]
 		}
 	]
