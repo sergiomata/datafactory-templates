@@ -2694,6 +2694,14 @@
 										"sink": {
 											"path": "Smile_Advisers"
 										}
+									},
+									{
+										"source": {
+											"path": "$['Appointment_No_Pay_Reason']"
+										},
+										"sink": {
+											"path": "Appointment_No_Pay_Reason"
+										}
 									}
 								],
 								"collectionReference": ""
