@@ -2718,6 +2718,38 @@
 										"sink": {
 											"path": "Appointment_No_Pay_Reason"
 										}
+									},
+									{
+										"source": {
+											"path": "$['Not_Advance_Payment_Reason']"
+										},
+										"sink": {
+											"path": "Not_Advance_Payment_Reason"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Installments']"
+										},
+										"sink": {
+											"path": "Installments"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Patient_Age_Tier']"
+										},
+										"sink": {
+											"path": "Patient_Age_Tier"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Patient_Age_Range']"
+										},
+										"sink": {
+											"path": "Patient_Age_Range"
+										}
 									}
 								],
 								"collectionReference": ""
