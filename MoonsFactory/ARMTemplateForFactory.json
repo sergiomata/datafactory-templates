@@ -467,6 +467,22 @@
 										"sink": {
 											"path": "Error_Message"
 										}
+									},
+									{
+										"source": {
+											"path": "$['Product_Category']"
+										},
+										"sink": {
+											"path": "Product_Category"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Transaction_Type']"
+										},
+										"sink": {
+											"path": "Transaction_Type"
+										}
 									}
 								]
 							}
